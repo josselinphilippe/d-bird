@@ -4,16 +4,17 @@
     
     <head>
         
-        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        
         
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
         
         <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-
+        
+        
        
         <style>
+            
             html, body {
                 height: 100%;
                 margin: 0;
@@ -34,7 +35,7 @@
                 font-size: 12px;
                 color: #666666;
                 height: 25px;
-                width: 65px;
+                width: 80px;
                 padding-top: 5px;
                 padding-left: 12px;
                 padding-right: 12px;
@@ -86,7 +87,7 @@
             #button_one:hover {
                 background: gray;
             }
-            
+        
             #button_two {
                 background: #FFFFFF;
                 cursor: pointer;
@@ -112,7 +113,7 @@
             
             #button_two:hover {
                 background: gray;
-            }
+            }          
             
         </style>
 
@@ -193,10 +194,15 @@
                 $("#count").empty();
                 });
             });
-                           
+                
+            //FILLS 'YEAR' WITH CURRENT YEAR
+            $(document).ready(function(){                  
+                var d = new Date();
+                var n = d.getFullYear();
+                document.getElementById("year").innerHTML = n; 
+             });               
                          
         });
-            
             
         </script>
 
@@ -217,13 +223,13 @@
                 
                 birds found in
         <!--YEAR DISPLAYED ON LOADING PAGE-->
-                <div id="year">2015</div>
+                <div id="year"></div>
             </p>
         </div>
         
     
     
-        <div class="button">
+        <div class="button"> 
              
             <div id="button_one" onclick="yearfill14()">
                 2014
@@ -235,8 +241,7 @@
                         }
                     </script>      
             </div>
-            
-            
+     
             <div id="button_two" onclick="yearfill15()" style="top: 130px;">
                 2015
 
@@ -247,8 +252,8 @@
                         }
                     </script>            
             </div>
-            
-        </div>
+      
+        </div> 
         
                
     </body>
