@@ -122,9 +122,9 @@
             
             $(document).ready(function () {
                 
+                //RETRIEVES CARTODB MAP AS BASELAYER
                 var dataLayer;
-
-               //RETRIEVES CARTODB MAP AS BASELAYER    
+    
                 cartodb.createVis('map', 'http://dklein.cartodb.com/api/v2/viz/68b306e6-230c-11e4-9aca-0e230854a1cb/viz.json/', {
                     cartodb_logo: false,
                     title: false,
@@ -135,19 +135,29 @@
                     center_lon: -73.998288,
                 })
                 
+                
+            //FUNCTIONS THAT ARE RUN WHEN PAGE IS DONE LOADING    
                 .done(function (vis, layers) {
                     
+              //SETS ONLOAD LAYER TO CURRENT YEAR WHEN PAGE LOADS       
+                var query = "SELECT * FROM psf_20_20bird_20mortality_20database_20_28resp WHERE YEAR='";    
+                var b = new Date();
+                var year = b.getFullYear();
+                        
+                query = query + year + "'";
                     
-                //SETS ONLOAD LAYER TO REFLECT DESIRED YEAR   
-                    dataLayer = layers[1].getSubLayer(0).setSQL("SELECT * FROM psf_20_20bird_20mortality_20database_20_28resp WHERE YEAR=2015");
+                dataLayer = layers[1].getSubLayer(0).setSQL(query);
+                    
+              
+                //SETS ONLOAD LAYER TO REFLECT DESIRED YEAR 
+                 //   dataLayer = layers[1].getSubLayer(0).setSQL("SELECT * FROM psf_20_20bird_20mortality_20database_20_28resp WHERE YEAR=2015");
                     
                     
                     
-             //FILLS "COUNT" WITH COUNT FROM SPECIFIED YEAR WHEN PAGE LOADS       
+              //FILLS "COUNT" WITH COUNT FROM SPECIFIED YEAR WHEN PAGE LOADS       
                 $.getJSON("http://dklein.cartodb.com/api/v2/sql?q=SELECT%20count(*)%20FROM%20psf_20_20bird_20mortality_20database_20_28resp where year='2015'", function (data) {
                
                 var items = data.rows[0];
-               
                 var count = items.count;
               
                 $("#count").prepend(count);
@@ -162,7 +172,6 @@
                  $.getJSON("http://dklein.cartodb.com/api/v2/sql?q=SELECT%20count(*)%20FROM%20psf_20_20bird_20mortality_20database_20_28resp where year='2014'", function (data) {
                
                 var items = data.rows[0];
-               
                 var count = items.count;
               
                 $("#count").prepend(count);
@@ -178,7 +187,6 @@
                 $.getJSON("http://dklein.cartodb.com/api/v2/sql?q=SELECT%20count(*)%20FROM%20psf_20_20bird_20mortality_20database_20_28resp where year='2015'", function (data) {
                
                 var items = data.rows[0];
-               
                 var count = items.count;
               
                 $("#count").prepend(count);
