@@ -140,7 +140,7 @@
                 .done(function (vis, layers) {
                     
               //SETS ONLOAD LAYER TO CURRENT YEAR WHEN PAGE LOADS       
-                var query = "SELECT * FROM d_bird WHERE YEAR='";    
+                var query = "SELECT * FROM d_bird WHERE DATE_FOUND LIKE'%";    
                 var b = new Date();
                 var year = b.getFullYear();
                         
@@ -149,8 +149,16 @@
                 dataLayer = layers[1].getSubLayer(0).setSQL(query);
                     
                     
-              //FILLS "COUNT" WITH COUNT FROM SPECIFIED YEAR WHEN PAGE LOADS       
-                $.getJSON("http://dklein.cartodb.com/api/v2/sql?q=SELECT%20count(*)%20FROM%20d_bird where year='2015'", function (data) {
+                    
+              //FILLS "COUNT" WITH COUNT FROM CURRENT YEAR WHEN PAGE LOADS
+                    
+                var query2 = "http://dklein.cartodb.com/api/v2/sql?q=SELECT%20count(*)%20FROM%20d_bird%20WHERE%20DATE_FOUND%20LIKE%27%25";    
+                var b2 = new Date();
+                var year2 = b2.getFullYear();
+                        
+                query2 = query2 + year2 + "%27";
+                    
+                $.getJSON(query2, function (data) {
                
                 var items = data.rows[0];
                 var count = items.count;
@@ -160,11 +168,12 @@
                 });  
                     
             });
+               
                 
-            //FILLS "COUNT" WITH COUNT FROM 2014 WHEN BUTTON ONE IS CLICKED
+            //ADDS 2014 LAYER AND FILLS "COUNT" WITH COUNT FROM 2014 WHEN BUTTON ONE IS CLICKED
              $('#button_one').click(function () {
-                    dataLayer.setSQL("SELECT * FROM d_bird where year='2014'");
-                 $.getJSON("http://dklein.cartodb.com/api/v2/sql?q=SELECT%20count(*)%20FROM%20d_bird where year='2014'", function (data) {
+                    dataLayer.setSQL("SELECT * FROM d_bird where date_found like '%2014'");
+                 $.getJSON("http://dklein.cartodb.com/api/v2/sql?q=SELECT%20COUNT%20(*)%20FROM%20d_bird%20where%20date_found%20like%20%27%252014%27", function (data) {
                
                 var items = data.rows[0];
                 var count = items.count;
@@ -176,10 +185,10 @@
             window.onload = initialize;
             });
      
-           //FILLS "COUNT" WITH COUNT FROM 2015 WHEN BUTTON TWO IS CLICKED       
+           //ADDS 2015 LAYER AND FILLS "COUNT" WITH COUNT FROM 2015 WHEN BUTTON TWO IS CLICKED       
             $('#button_two').click(function () {
-                    dataLayer.setSQL("SELECT * FROM d_bird where year='2015'");
-                $.getJSON("http://dklein.cartodb.com/api/v2/sql?q=SELECT%20count(*)%20FROM%20d_bird where year='2015'", function (data) {
+                    dataLayer.setSQL("SELECT * FROM d_bird where date_found like '%2015'");
+                $.getJSON("http://dklein.cartodb.com/api/v2/sql?q=SELECT%20COUNT%20(*)%20FROM%20d_bird%20where%20date_found%20like%20%27%252015%27", function (data) {
                
                 var items = data.rows[0];
                 var count = items.count;
@@ -188,7 +197,7 @@
                 console.log("Text: " + items.count);
                 }); 
             
-                window.onload = initialize;
+            window.onload = initialize;
             });
             
            //EMPTIES "COUNT" WHEN ANY BUTTON IS CLICKED
@@ -264,4 +273,3 @@
     
     
 </html>
-    
