@@ -1,0 +1,45 @@
+@marker-line-color: #000000;
+@marker-placement: point;
+@marker-fill-opacity: 1.0;
+@marker-line-width: 0.5;
+@marker-line-opacity: 0.8;
+@marker-type: ellipse;
+@marker-allow-overlap: true;
+
+
+
+#d_bird [deadinjured='Dead']{
+  marker-line-color: @marker-line-color;
+  marker-placement: @marker-placement;
+  marker-fill-opacity: @marker-fill-opacity;
+  marker-line-width: @marker-line-width;
+  marker-line-opacity: @marker-line-opacity;
+  marker-fill: #B81609;
+  marker-type: @marker-type;
+  marker-allow-overlap: @marker-allow-overlap ;
+}
+
+#d_bird [deadinjured='Injured']{
+
+  marker-line-color: @marker-line-color;
+  marker-placement: @marker-placement;
+  marker-fill-opacity: @marker-fill-opacity;
+  marker-line-width: @marker-line-width;
+  marker-line-opacity: @marker-line-opacity;
+  marker-fill: #FFA300;
+  marker-type: @marker-type;
+  marker-allow-overlap: @marker-allow-overlap ;
+}
+
+
+
+
+#d_bird {
+  [zoom<10]{marker-width: 6.0}
+  [zoom=10]{marker-width: 7.0}
+  [zoom=11]{marker-width:6.75}
+  [zoom>=12]{marker-width:8.0}
+  [zoom>=14]{marker-width:12.0}
+  [zoom>=18]{marker-width:14.0}
+}
+  
