@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+        
+	<title>D-Bird: NYC Audubon Bird Mortality Database</title>
+        
+    <meta charset="utf-8">
+
+        
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+        
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+
+        
+    <script src="l.control.geosearch.js"></script>
+    <script src="l.geosearch.provider.google.js"></script>
+    <link rel="stylesheet" href="http://smeijer.github.io/GeoSearch/css/l.geosearch.css" />
+        
+		
+	<!-- BOOTSTRAP -->        
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<!-- BOOTSTRAP -->      
+
+	
+	<!-- NEW DATEPICKER	-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
+  
+	<script>
+		$(function() {
+		$( "#entry_1089406598" ).datepicker({maxDate: "+0D" });
+		});
+	</script>
+	<!-- NEW DATEPICKER -->
+
+	
+	<!-- NEW TIMEPICKER -->
+	<script type="text/javascript" src="jquery.timepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery.timepicker.css" />
+	<script type="text/javascript" src="lib/bootstrap-datepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap-datepicker.css" />
+	<script type="text/javascript" src="lib/site.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/site.css" />
+
+	<script>
+		$(function() {
+		$( "#entry_1322686028" ).timepicker();
+		});
+	</script> 
+	<!-- NEW TIMEPICKER -->		
+        
+
+	<!-- THANK YOU REDIRECT -->
+    <script type="text/javascript">var submitted=false;</script>
+	<!-- THANK YOU REDIRECT -->
+                
+    
+    <script>
+        
+        var map;
+        
+        var marker;
+        
+        var geosearchControl;
+
+            $(document).ready(function () {
+                
+                map = L.map('map').setView([40.709792, -73.991547], 10);
+ 
+                geosearchControl = new L.Control.GeoSearch({
+                    provider: new L.GeoSearch.Provider.Google()
+                }).addTo(map);
+                
+                map.on('geosearch_showlocation', function(e) {
+                    console.log(e.Location.X)
+                    if (marker){
+                        map.removeLayer(marker)
+                        marker=undefined
+                        }
+                    $('#entry_563161073').val(e.Location.Y); 
+				    $('#entry_195156901').val(e.Location.X);
+                });
+                
+                               
+                L.tileLayer('https://{s}.tiles.mapbox.com/v3/ebrelsford.ho06j5h0/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>'
+                }).addTo(map);
+             
+                $.getJSON('queens.geojson', function (data) {
+                    L.geoJson(data, {
+                        onEachFeature: function (feature, layer) {
+                            layer.bindPopup('area: ' + feature.properties.area);
+                        }
+                    }).addTo(map);
+                });
+         
+                
+                
+				function onMapClick(e) {
+                    if(geosearchControl._positionMarker){
+                        map.removeLayer(geosearchControl._positionMarker)
+                        geosearchControl._positionMarker=undefined
+                    }
+                    if (marker){
+                        map.removeLayer(marker);
+                    }
+                    marker=L.marker(e.latlng).addTo(map);
+						$('#entry_563161073').val(e.latlng.lat)
+						$('#entry_195156901').val(e.latlng.lng)
+						}	
+
+					map.on('click', onMapClick);        
+            });
+                        
+    </script>
+    
+    
+    
+    
+    
+    
+        
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+			}
+        
+        body{
+            background-color: white;
+            font-family: Arial, Helvetica, sans-serif;
+			margin-top: 9px;
+			margin-left: 75px;
+            overflow-x: hidden;
+            }
+                    
+        h2{
+            color: #005331;   
+            }
+                
+        a{
+            color: #2a8047;
+            }
+                
+        .intro{
+            font-size: 15.5px;
+            color: #575757;
+            margin-right: 194px;
+            }
+                
+        .instructions{
+            font-size: 19px;
+            color: #575757;
+            margin-top: 28px;
+            margin-right: 100px;
+            }
+        
+        #step{
+            padding-bottom: 9px;
+            }
+        
+        .row{
+            margin-top: 40px;
+            margin-left: 40px;
+            }
+				
+		#map{
+            height: 400px;
+            width: 90%;
+			border: solid;
+			border-color: #005331;
+			border-width: 2px;
+            }
+                    
+        .footer{
+            margin-top: 70px;
+            font-size: 13px;
+            color: #86a498;
+            text-align: center;
+            }
+        
+        @media screen (max-width:600px) {
+              .intro{
+            font-size: 16px;
+            color: #575757;
+            margin-right: 50px;
+            }
+        }
+        
+    </style>
+        
+</head>
+    
+ 
+    
+    
+       
+<body>
+        
+         
+		<a href="http://www.nycaudubon.org/index.php">
+            <img src="http://www.nycaudubon.org/images/logo.jpg"  style="width: 504px; height: 129px;"/>
+        </a>
+		</p>
+    
+    
+    <h1><em><strong>D-Bird: NYC Bird Mortality Database</strong></em></h1></p>
+
+
+    
+
+         <div class="instructions">
+             If you find a dead or injured bird, you can make an important contribution to <a href="http://www.nycaudubon.org/project-safe-flight"><strong>Project Safe Flight</strong></a> by reporting that bird into our new database from your computer or mobile device. Just follow these steps:</p>
+
+            <ol>
+                <div id="step">
+                <li>Tell us where you found the bird: Zoom in and click on the map or search for the <strong><em>complete</em></strong> address (street, city, state) where the bird was located.  A marker will appear where you clicked or on the address that you searched for.</li>
+                </div>
+                <div id="step">
+                <li>After you have clicked or found the address, fill out the information fields to the best of your ability.  Fields marked with * are required.</li>
+                </div>
+                <div id="step">
+                <li>Click the 'submit' button.  After submitting, you will have the option to submit another response or return to the Project Safe Flight homepage.  If you have photos of the bird, please submit them to <a href="mailto:deadbird@nycaudubon.org">deadbird@nycaudubon.org</a></li>
+                </div>
+             </ol>
+        </div>
+
+
+    <!-- BOOTSTRAP -->
+    <div class="row">
+    <!-- BOOTSTRAP --> 
+    
+        
+        
+       
+        <!-- BOOTSTRAP LEFT -->
+        <div class="<col-sm-6 col-md-6 left column">
+        <!-- BOOTSTRAP LEFT-->
+    
+    <!--        
+          <div id="map"></div>
+	       <p></p>
+
+    -->
+
+        <!-- BOOTSTRAP LEFT -->        
+        </div>
+        <!-- BOOTSTRAP LEFT -->
+
+
+
+
+        <!-- BOOTSTRAP RIGHT -->
+        <div class="<col-sm-6 col-md-6 right column">
+        <!-- BOOTSTRAP RIGHT --> 
+             
+   
+            
+            <!-- GET LOCATION/DATE/TIME BUTTON -->            
+            <button onclick="getLocation()">Get Current Location, Date, and Time</button></p>
+                <script>
+                    var x = document.getElementById();
+
+                    function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(showPosition);
+                            }
+                            else {x.innerHTML = "Geolocation is not supported by this browser.";
+                            }
+                          
+                        var d = new Date();
+                        var n = d.toLocaleDateString();
+                        d.getDate(d.getDate() + 20);
+                        n = ('0' + (d.getMonth()+1)).slice(-2) + '/'
+                        + ('0' + d.getDate()).slice(-2) + '/'
+                        + d.getFullYear();
+                            
+                    function showPosition(position) {
+                        document.getElementById("entry_563161073").value=position.coords.latitude;
+                        document.getElementById("entry_195156901").value=position.coords.longitude;
+                        } 
+                        
+                        var now = new Date();
+                        var hh = now.getHours();
+                        var min = now.getMinutes();
+                        var ampm = (hh>=12)?'pm':'am';
+                            hh = hh%12;
+                            hh = hh?hh:12;
+                            min = min<10?'0'+min:min;				
+                        var time = hh+":"+min+""+ampm;
+                        
+                        
+                        document.getElementById("entry_1089406598").value = n;
+                        document.getElementById("entry_1322686028").value = time;
+                        }
+                    
+                </script>
+            
+            <!-- GET LOCATION/DATE/TIME BUTTON -->           
+        
+            
+      <div class="ss-form">
+          
+          <!-- THANK YOU REDIRECT -->
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='http://nycaudubon.neocities.org/D-Bird-ThankYou.htm';}"></iframe>
+          <!-- THANK YOU REDIRECT -->
+          
+          <form action="https://docs.google.com/a/nycaudubon.org/forms/d/1Q_Ehp0IecrwgQIugde1IPVZwS-ySzL3vp2DVTYGFifM/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true">
+              
+              <ol role="list" class="ss-question-list" style="padding-left: 0">
+                  
+
+                  <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item ss-item-required ss-text">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_1089406598">
+                                    <div class="ss-q-title">Date found
+                                        <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                        <span class="ss-required-asterisk" aria-hidden="true">*</span>
+                                    </div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <input type="text" name="entry.1089406598" value="" class="ss-q-short" id="entry_1089406598" dir="auto" aria-label="Datefound  " aria-required="true" required="" title="">
+                                <div class="error-message" id="1349885659_errorMessage"></div>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item ss-item-required ss-text">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_1322686028">
+                                    <div class="ss-q-title">Time found
+                                        <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                        <span class="ss-required-asterisk" aria-hidden="true">*</span>
+                                    </div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <input type="text" name="entry.1322686028" value="" class="ss-q-short" id="entry_1322686028" dir="auto" aria-label="Time Found  " aria-required="true" required="" title="">
+                                <div class="error-message" id="730570887_errorMessage"></div>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item ss-item-required ss-text">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_563161073">
+                                    <div class="ss-q-title">Lati
+                                        <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                        <span class="ss-required-asterisk" aria-hidden="true">*</span>
+                                    </div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+                                <input type="text" name="entry.563161073" value="" class="ss-q-short" id="entry_563161073" dir="auto" aria-label="Lati  " aria-required="true" required="" title="">
+                                <div class="error-message" id="539929646_errorMessage"></div>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item ss-item-required ss-text">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_195156901">
+                                    <div class="ss-q-title">Longi
+                                        <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                        <span class="ss-required-asterisk" aria-hidden="true">*</span>
+                                    </div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <input type="text" name="entry.195156901" value="" class="ss-q-short" id="entry_195156901" dir="auto" aria-label="Longi  " aria-required="true" required="" title="">
+                                <div class="error-message" id="2126906813_errorMessage"></div>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item ss-item-required ss-select">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_212797529">
+                                    <div class="ss-q-title">Species
+                                        <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                        <span class="ss-required-asterisk" aria-hidden="true">*</span>
+                                    </div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <select name="entry.212797529" id="entry_212797529" aria-label="Species  " aria-required="true" required="">
+                                    <option value=""></option>
+<option value="unknown">unknown</option> <option value="other (describe in &#39;Notes&#39;)">other (describe in &#39;Notes&#39;)</option> <option value="bat sp.">bat sp.</option> <option value="flycatcher sp.">flycatcher sp.</option> <option value="gull sp.">gull sp.</option> <option value="kinglet sp.">kinglet sp.</option> <option value="owl sp.">owl sp.</option> <option value="sparrow sp.">sparrow sp.</option> <option value="thrush sp.">thrush sp.</option> <option value="warbler sp.">warbler sp.</option> <option value="woodpecker sp.">woodpecker sp.</option> <option value="wren sp.">wren sp.</option> <option value="Alder Flycatcher">Alder Flycatcher</option> <option value="American Black Duck">American Black Duck</option> <option value="American Coot">American Coot</option> <option value="American Goldfinch">American Goldfinch</option> <option value="American Kestrel">American Kestrel</option> <option value="American Redstart">American Redstart</option> <option value="American Robin">American Robin</option> <option value="American Woodcock">American Woodcock</option> <option value="Baltimore Oriole">Baltimore Oriole</option> <option value="Barn Swallow">Barn Swallow</option> <option value="Bay-Breasted Warbler">Bay-Breasted Warbler</option> <option value="Belted Kingfisher">Belted Kingfisher</option> <option value="Black-and-white Warbler">Black-and-white Warbler</option> <option value="Black-billed Cuckoo">Black-billed Cuckoo</option> <option value="Black-capped Chickadee">Black-capped Chickadee</option> <option value="Blackpoll Warbler">Blackpoll Warbler</option> <option value="Black-throated Blue Warbler">Black-throated Blue Warbler</option> <option value="Black-throated Green Warbler">Black-throated Green Warbler</option> <option value="Blue Jay">Blue Jay</option> <option value="Blue-headed Vireo">Blue-headed Vireo</option> <option value="Blue-winged Warbler">Blue-winged Warbler</option> <option value="Brown Creeper">Brown Creeper</option> <option value="Brown Thrasher">Brown Thrasher</option> <option value="Brown-headed Cowbird">Brown-headed Cowbird</option> <option value="Canada Warbler">Canada Warbler</option> <option value="Cape May Warbler">Cape May Warbler</option> <option value="Cedar Waxwing">Cedar Waxwing</option> <option value="Chestnut-sided Warbler">Chestnut-sided Warbler</option> <option value="Chipping Sparrow">Chipping Sparrow</option> <option value="Chuck-will&#39;s-widow">Chuck-will&#39;s-widow</option> <option value="Clapper Rail">Clapper Rail</option> <option value="Common Grackle">Common Grackle</option> <option value="Common Yellowthroat">Common Yellowthroat</option> <option value="Connecticut Warbler">Connecticut Warbler</option> <option value="Dark-eyed Junco">Dark-eyed Junco</option> <option value="Downy Woodpecker">Downy Woodpecker</option> <option value="Eastern Bluebird">Eastern Bluebird</option> <option value="Eastern Kingbird">Eastern Kingbird</option> <option value="Eastern Phoebe">Eastern Phoebe</option> <option value="Eastern Towhee">Eastern Towhee</option> <option value="Eastern Wood-pewee">Eastern Wood-pewee</option> <option value="European Starling">European Starling</option> <option value="Field Sparrow">Field Sparrow</option> <option value="Fox Sparrow">Fox Sparrow</option> <option value="Golden-crowned Kinglet">Golden-crowned Kinglet</option> <option value="Gray Catbird">Gray Catbird</option> <option value="Gray-cheeked Thrush">Gray-cheeked Thrush</option> <option value="Great Crested Flycatcher">Great Crested Flycatcher</option> <option value="Hermit Thrush">Hermit Thrush</option> <option value="Hooded Warbler">Hooded Warbler</option> <option value="House Finch">House Finch</option> <option value="House Sparrow">House Sparrow</option> <option value="House Wren">House Wren</option> <option value="Indigo Bunting">Indigo Bunting</option> <option value="Kentucky Warbler">Kentucky Warbler</option> <option value="Lazuli Bunting">Lazuli Bunting</option> <option value="Least Flycatcher">Least Flycatcher</option> <option value="Lincoln&#39;s Sparrow">Lincoln&#39;s Sparrow</option> <option value="Louisiana Waterthrush">Louisiana Waterthrush</option> <option value="Magnolia Warbler">Magnolia Warbler</option> <option value="Marsh Wren">Marsh Wren</option> <option value="Mourning Dove">Mourning Dove</option> <option value="Mourning Warbler">Mourning Warbler</option> <option value="Northern Cardinal">Northern Cardinal</option> <option value="Northern Flicker">Northern Flicker</option> <option value="Northern Mockingbird">Northern Mockingbird</option> <option value="Northern Parula">Northern Parula</option> <option value="Northern Waterthrush">Northern Waterthrush</option> <option value="Olive-sided Flycatcher">Olive-sided Flycatcher</option> <option value="Orchard Oriole">Orchard Oriole</option> <option value="Osprey">Osprey</option> <option value="Ovenbird">Ovenbird</option> <option value="Palm Warbler">Palm Warbler</option> <option value="Peregrine Falcon">Peregrine Falcon</option> <option value="Pine Warbler">Pine Warbler</option> <option value="Prairie Warbler">Prairie Warbler</option> <option value="Prothonotary Warbler">Prothonotary Warbler</option> <option value="Purple Finch">Purple Finch</option> <option value="Red-headed Woodpecker">Red-headed Woodpecker</option> <option value="Red-bellied Woodpecker">Red-bellied Woodpecker</option> <option value="Red-bellied Nuthatch">Red-bellied Nuthatch</option> <option value="Red-eyed Vireo">Red-eyed Vireo</option> <option value="Red-tailed Hawk">Red-tailed Hawk</option> <option value="Rock Pigeon">Rock Pigeon</option> <option value="Rose-breasted Grosbeak">Rose-breasted Grosbeak</option> <option value="Ruby-crowned Kinglet">Ruby-crowned Kinglet</option> <option value="Ruby-throated Hummingbird">Ruby-throated Hummingbird</option> <option value="Savannah Sparrow">Savannah Sparrow</option> <option value="Scarlet Tanager">Scarlet Tanager</option> <option value="Seaside Sparrow">Seaside Sparrow</option> <option value="Song Sparrow">Song Sparrow</option> <option value="Sora">Sora</option> <option value="Swainson&#39;s Thrush">Swainson&#39;s Thrush</option> <option value="Swamp Sparrow">Swamp Sparrow</option> <option value="Tennessee Warbler">Tennessee Warbler</option> <option value="Tufted Titmouse">Tufted Titmouse</option> <option value="Veery">Veery</option> <option value="Virginia Rail">Virginia Rail</option> <option value="White-breasted Nuthatch">White-breasted Nuthatch</option> <option value="White-crowned Sparrow">White-crowned Sparrow</option> <option value="White-eyed Vireo">White-eyed Vireo</option> <option value="White-throated Sparrow">White-throated Sparrow</option> <option value="Willow Flycatcher">Willow Flycatcher</option> <option value="Wilson&#39;s Warbler">Wilson&#39;s Warbler</option> <option value="Winter Wren">Winter Wren</option> <option value="Wood Thrush">Wood Thrush</option> <option value="Worm-eating Warbler">Worm-eating Warbler</option> <option value="Yellow Warbler">Yellow Warbler</option> <option value="Yellow-bellied Flycatcher">Yellow-bellied Flycatcher</option> <option value="Yellow-bellied Sapsucker">Yellow-bellied Sapsucker</option> <option value="Yellow-billed Cuckoo">Yellow-billed Cuckoo</option> <option value="Yellow-breasted Chat">Yellow-breasted Chat</option> <option value="Yellow-rumped Warbler">Yellow-rumped Warbler</option> <option value="Yellow-throated Vireo">Yellow-throated Vireo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><p></p>
+                          
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item ss-item-required ss-select">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_1760098207">
+                                    <div class="ss-q-title">Dead or injured
+                                        <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                        <span class="ss-required-asterisk" aria-hidden="true">*</span>
+                                    </div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <select name="entry.1760098207" id="entry_1760098207" aria-label="Deadinjured  " aria-required="true" required="">
+                                    <option value=""></option>
+                                    <option value="Dead">Dead</option>
+                                    <option value="Injured">Injured</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item  ss-select">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_1162522983">
+                                    <div class="ss-q-title">Sex</div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <select name="entry.1162522983" id="entry_1162522983" aria-label="Sex  ">
+                                    <option value=""></option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Unknown">Unknown</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item  ss-select">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_968826813">
+                                    <div class="ss-q-title">Age</div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <select name="entry.968826813" id="entry_968826813" aria-label="Age  ">
+                                    <option value=""></option>
+                                    <option value="Adult">Adult</option>
+                                    <option value="Juvenile">Juvenile</option>
+                                    <option value="Unknown">Unknown</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item  ss-text">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_583437283">
+                                    <div class="ss-q-title">Your name</div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <input type="text" name="entry.583437283" value="" class="ss-q-short" id="entry_583437283" dir="auto" aria-label="Your name  " title="">
+                                <div class="error-message" id="648750362_errorMessage"></div>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item  ss-text">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_1267380138">
+                                    <div class="ss-q-title">Contact info</div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <input type="text" name="entry.1267380138" value="" class="ss-q-short" id="entry_1267380138" dir="auto" aria-label="Contact info  " title="">
+                                <div class="error-message" id="633149000_errorMessage"></div>
+                            </div>
+                        </div>
+                    </div><p></p>
+                    
+                    <div class="ss-form-question errorbox-good" role="listitem">
+                        <div dir="ltr" class="ss-item  ss-text">
+                            <div class="ss-form-entry">
+                                <label class="ss-q-item-label" for="entry_389816901">
+                                    <div class="ss-q-title">Notes</div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label>
+                                <input type="text" name="entry.389816901" value="" class="ss-q-short" id="entry_389816901" dir="auto" aria-label="Notes  " title="">
+                                <div class="error-message" id="534155811_errorMessage"></div>
+                            </div>
+                        </div>
+                    </div><p></p>
+                              
+                  
+                  <input type="hidden" name="draftResponse" value="[,,&quot;-6196294546305223501&quot;]
+">
+                  <input type="hidden" name="pageHistory" value="0">
+
+
+                  <input type="hidden" name="fbzx" value="-6196294546305223501">
+
+                  <div class="ss-item ss-navigate">
+                      <table id="navigation-table">
+                          <tbody>
+                              <tr>
+                                  <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
+                                      <input type="submit" name="submit" value="Submit" id="ss-submit" style="padding-left: 16px; padding-right: 16px; padding-top: 7px; padding-bottom: 7px;">
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </ol>
+          </form>
+            </div>    
+            
+            
+  
+                            
+        <!-- BOOTSTRAP RIGHT -->
+        </div>
+        <!-- BOOTSTRAP RIGHT -->
+    
+
+    <!-- BOOTSTRAP -->
+    </div>
+    <!-- BOOTSTRAP -->
+
+     <p>
+         <div class="intro">
+For more than 15 years, NYC Audubon has been collecting data on building-related bird mortality in New York City.  This work is a component of <a href="http://www.nycaudubon.org/project-safe-flight"><strong>Project Safe Flight</strong></a>, part of our broader effort generously supported by the <a href="http://leonlevyfoundation.org/"><strong>Leon Levy Foundation</strong></a> to make the City a safer place for birds.
+<p></p>
+For a list of animal hospitals and rehabilitation centers in New York City, <a href="http://www.nycaudubon.org/index.php/animal-hospitals-and-rehabilitation"><strong>click here</strong></a>
+<p></p>
+To learn more about D-Bird and to see a map of D-Bird results, <a href="http://www.nycaudubon.org/project-safe-flight#D-Bird"><strong>click here</strong></a>
+         </div>
+     </p>
+
+
+	<div class="footer">
+        
+        
+        <a href="http://leonlevyfoundation.org/">
+            <img src="http://www.levypreserve.org/UserFiles/HTMLEditor/LeonLevyFoundation_logo.jpg" style="width: 190px; height: 85px; margin-right: 131px; margin-bottom: 20px;"/>
+        </a>
+        
+        
+        <div style="padding-right: 130px;">
+
+    New York City Audubon<span style="padding: 0px 8px;">•</span>71 W. 23rd St., Suite 1523  New York, NY 10010</br>
+
+212-691-7483<br>
+
+		<a href="http://www.nycaudubon.org/sitemap" style="color: #86a498">Site Map</a><span style="padding: 0px 8px;">•</span><a href="http://www.nycaudubon.org/privacy-policy" style="color: #86a498">Privacy Policy</a><span style="padding: 0px 8px;">•</span><a href="http://www.nycaudubon.org/contact-us" style="color: #86a498">Contact Us</a><p></p>
+        
+        <a href="http://nycaudubon.neocities.org/D-BirdTerms.html">Disclaimer</a>
+    
+        </div>
+        
+	</div>
+
+
+</body>
+</html>
+
+<!-- Created for NYC Audubon by Darren Klein, 2014.  Special thanks to Eric Brelsford for his assistance -->
