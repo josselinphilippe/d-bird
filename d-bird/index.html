@@ -6,7 +6,7 @@
     
     
     
-    <link rel="shortcut icon" href="http://nycaudubon.neocities.org/favicon.ico">
+    <link rel="shortcut icon" href="http://d-bird.org/nyca%20fav%20icon.ico">
     
     
 
@@ -38,8 +38,8 @@
 	<!-- NEW DATEPICKER	-->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
-  
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    
 	<script>
 		$(function() {
 		$( "#entry_1089406598" ).datepicker({maxDate: "+0D" });
@@ -66,7 +66,10 @@
 
 	<!-- THANK YOU REDIRECT -->
     <script type="text/javascript">var submitted=false;</script>
-	<!-- THANK YOU REDIRECT -->
+    
+    
+    <!-- HOVER EFFECT STYLESHEET -->
+    <link href="css/hover.css" rel="stylesheet" media="all">
                 
     
     <script>
@@ -79,7 +82,7 @@
 
             $(document).ready(function () {
                 
-                map = L.map('map').setView([40.709792, -73.991547], 10);
+                map = L.map('map', {touchZoom: false}).setView([40.709792, -73.991547], 10);
  
                 geosearchControl = new L.Control.GeoSearch({
                     provider: new L.GeoSearch.Provider.Google()
@@ -181,8 +184,9 @@
             }
 				
 		#map{
-            height: 400px;
+            height: 475px;
             width: 90%;
+            margin-top: 20px;
 			border: solid;
 			border-color: #005331;
 			border-width: 2px;
@@ -194,6 +198,50 @@
             color: #86a498;
             text-align: center;
             }
+        
+        .ss-form-entry{
+             margin-bottom: 12px;
+         }
+        
+        .ss-q-title{
+            height: 15px;
+            font-weight: 700;
+        }
+        
+        span.ss-choice-label{
+            margin-right: 13px;
+            font-weight: 200;
+        }
+        
+        ul.ss-choices{
+            padding-left: 8px;
+        }
+        
+        .textInput{
+            padding-left: 4px;
+        }
+        
+        .hvr-fade {
+            display: inline-block;
+            vertical-align: middle;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -moz-osx-font-smoothing: grayscale;
+            overflow: hidden;
+            -webkit-transition-duration: 0.2s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: color, background-color;
+            transition-property: color, background-color;
+        }
+
+        .hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
+            background-color: #2098d1;
+            color: white;
+        }
+        
         
         @media screen (max-width:600px) {
               .intro{
@@ -275,15 +323,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <!-- BOOTSTRAP RIGHT --> 
              
    
-            
+   <!--
+   
+               <button onclick="getLocation()">Get Current Location, Date, and Time</button></p>
+                <script>
+                    var x = document.getElementById();
+
+                    function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(showPosition);
+                            }
+                            else {x.innerHTML = "Geolocation is not supported by this browser.";
+                            }
+                          
+                        var d = new Date();
+                        var n = d.toLocaleDateString();
+                        d.getDate(d.getDate() + 20);
+                        n = ('0' + (d.getMonth()+1)).slice(-2) + '/'
+                        + ('0' + d.getDate()).slice(-2) + '/'
+                        + d.getFullYear();
+                            
+                    function showPosition(position) {
+                        document.getElementById("entry_563161073").value=position.coords.latitude;
+                        document.getElementById("entry_195156901").value=position.coords.longitude;
+                        } 
+                        
+                        var now = new Date();
+                        var hh = now.getHours();
+                        var min = now.getMinutes();
+                        var ampm = (hh>=12)?'pm':'am';
+                            hh = hh%12;
+                            hh = hh?hh:12;
+                            min = min<10?'0'+min:min;				
+                        var time = hh+":"+min+""+ampm;
+                        
+                        
+                        document.getElementById("entry_1089406598").value = n;
+                        document.getElementById("entry_1322686028").value = time;
+                        }
+                    
+                </script>
+                
+                
+                -->
+   
+ 
             
       <div class="ss-form">
        
         <!-- CUSTOM THANK YOU PAGE -->  
-          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='http://nycaudubon.neocities.org/D-Bird-ThankYou.htm';}"></iframe>
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='http://d-bird.org/thank%20you.html';}"></iframe>
           
           <form action="https://docs.google.com/a/nycaudubon.org/forms/d/1Q_Ehp0IecrwgQIugde1IPVZwS-ySzL3vp2DVTYGFifM/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true">
-              <!-- CUSTOM THANK YOU PAGE (SEE DETAILS IN ACTION) -->
+              <!-- CUSTOM THANK YOU PAGE -->
+              
+
+          
               
               <ol role="list" class="ss-question-list" style="padding-left: 0">
                   
@@ -298,12 +393,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         <span class="ss-required-asterisk" aria-hidden="true">*</span>
                                     </div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
+                                </label></br>
+                            
+                            <div class="textInput">
                                 <input type="text" name="entry.1089406598" value="" class="ss-q-short" id="entry_1089406598" dir="auto" aria-label="Datefound  " aria-required="true" required="" title="">
                                 <div class="error-message" id="1349885659_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
+                    </div>
+                  
+                  </div>
                     
                     <div class="ss-form-question errorbox-good" role="listitem">
                         <div dir="ltr" class="ss-item ss-item-required ss-text">
@@ -314,12 +413,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         <span class="ss-required-asterisk" aria-hidden="true">*</span>
                                     </div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
+                                </label></br>
+                            
+                            <div class="textInput">
                                 <input type="text" name="entry.1322686028" value="" class="ss-q-short" id="entry_1322686028" dir="auto" aria-label="Time Found  " aria-required="true" required="" title="">
                                 <div class="error-message" id="730570887_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
+                    </div>
+          </div>
                     
                     <div class="ss-form-question errorbox-good" role="listitem" style="display: none">
                         <div dir="ltr" class="ss-item ss-item-required ss-text">
@@ -329,12 +431,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
                                         <span class="ss-required-asterisk" aria-hidden="true">*</span>
                                     </div>
-                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                </label></br>
                                 <input type="text" name="entry.563161073" value="" class="ss-q-short" id="entry_563161073" dir="auto" aria-label="Lati  " aria-required="true" required="" title="">
                                 <div class="error-message" id="539929646_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
+                    </div>
                     
                     <div class="ss-form-question errorbox-good" role="listitem" style="display: none">
                         <div dir="ltr" class="ss-item ss-item-required ss-text">
@@ -345,12 +448,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         <span class="ss-required-asterisk" aria-hidden="true">*</span>
                                     </div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
+                                </label></br>
                                 <input type="text" name="entry.195156901" value="" class="ss-q-short" id="entry_195156901" dir="auto" aria-label="Longi  " aria-required="true" required="" title="">
                                 <div class="error-message" id="2126906813_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
+                    </div>
                     
                     <div class="ss-form-question errorbox-good" role="listitem">
                         <div dir="ltr" class="ss-item ss-item-required ss-select">
@@ -361,67 +464,110 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         <span class="ss-required-asterisk" aria-hidden="true">*</span>
                                     </div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
+                                </label></br>
+                            
+                            <div class="textInput">
                                 <select name="entry.212797529" id="entry_212797529" aria-label="Species  " aria-required="true" required="">
                                     <option value=""></option>
 <option value="unknown">unknown</option> <option value="other (describe in &#39;Notes&#39;)">other (describe in &#39;Notes&#39;)</option> <option value="bat sp.">bat sp.</option> <option value="flycatcher sp.">flycatcher sp.</option> <option value="gull sp.">gull sp.</option> <option value="kinglet sp.">kinglet sp.</option> <option value="owl sp.">owl sp.</option> <option value="sparrow sp.">sparrow sp.</option> <option value="thrush sp.">thrush sp.</option> <option value="warbler sp.">warbler sp.</option> <option value="woodpecker sp.">woodpecker sp.</option> <option value="wren sp.">wren sp.</option> <option value="Alder Flycatcher">Alder Flycatcher</option> <option value="American Black Duck">American Black Duck</option> <option value="American Coot">American Coot</option> <option value="American Goldfinch">American Goldfinch</option> <option value="American Kestrel">American Kestrel</option> <option value="American Redstart">American Redstart</option> <option value="American Robin">American Robin</option> <option value="American Woodcock">American Woodcock</option> <option value="Baltimore Oriole">Baltimore Oriole</option> <option value="Barn Swallow">Barn Swallow</option> <option value="Bay-Breasted Warbler">Bay-Breasted Warbler</option> <option value="Belted Kingfisher">Belted Kingfisher</option> <option value="Black-and-white Warbler">Black-and-white Warbler</option> <option value="Black-billed Cuckoo">Black-billed Cuckoo</option> <option value="Black-capped Chickadee">Black-capped Chickadee</option> <option value="Blackpoll Warbler">Blackpoll Warbler</option> <option value="Black-throated Blue Warbler">Black-throated Blue Warbler</option> <option value="Black-throated Green Warbler">Black-throated Green Warbler</option> <option value="Blue Jay">Blue Jay</option> <option value="Blue-headed Vireo">Blue-headed Vireo</option> <option value="Blue-winged Warbler">Blue-winged Warbler</option> <option value="Brown Creeper">Brown Creeper</option> <option value="Brown Thrasher">Brown Thrasher</option> <option value="Brown-headed Cowbird">Brown-headed Cowbird</option> <option value="Canada Warbler">Canada Warbler</option> <option value="Cape May Warbler">Cape May Warbler</option> <option value="Cedar Waxwing">Cedar Waxwing</option> <option value="Chestnut-sided Warbler">Chestnut-sided Warbler</option> <option value="Chipping Sparrow">Chipping Sparrow</option> <option value="Chuck-will&#39;s-widow">Chuck-will&#39;s-widow</option> <option value="Clapper Rail">Clapper Rail</option> <option value="Common Grackle">Common Grackle</option> <option value="Common Yellowthroat">Common Yellowthroat</option> <option value="Connecticut Warbler">Connecticut Warbler</option> <option value="Dark-eyed Junco">Dark-eyed Junco</option> <option value="Downy Woodpecker">Downy Woodpecker</option> <option value="Eastern Bluebird">Eastern Bluebird</option> <option value="Eastern Kingbird">Eastern Kingbird</option> <option value="Eastern Phoebe">Eastern Phoebe</option> <option value="Eastern Towhee">Eastern Towhee</option> <option value="Eastern Wood-pewee">Eastern Wood-pewee</option> <option value="European Starling">European Starling</option> <option value="Field Sparrow">Field Sparrow</option> <option value="Fox Sparrow">Fox Sparrow</option> <option value="Golden-crowned Kinglet">Golden-crowned Kinglet</option> <option value="Gray Catbird">Gray Catbird</option> <option value="Gray-cheeked Thrush">Gray-cheeked Thrush</option> <option value="Great Crested Flycatcher">Great Crested Flycatcher</option> <option value="Hermit Thrush">Hermit Thrush</option> <option value="Hooded Warbler">Hooded Warbler</option> <option value="House Finch">House Finch</option> <option value="House Sparrow">House Sparrow</option> <option value="House Wren">House Wren</option> <option value="Indigo Bunting">Indigo Bunting</option> <option value="Kentucky Warbler">Kentucky Warbler</option> <option value="Lazuli Bunting">Lazuli Bunting</option> <option value="Least Flycatcher">Least Flycatcher</option> <option value="Lincoln&#39;s Sparrow">Lincoln&#39;s Sparrow</option> <option value="Louisiana Waterthrush">Louisiana Waterthrush</option> <option value="Magnolia Warbler">Magnolia Warbler</option> <option value="Marsh Wren">Marsh Wren</option> <option value="Mourning Dove">Mourning Dove</option> <option value="Mourning Warbler">Mourning Warbler</option> <option value="Northern Cardinal">Northern Cardinal</option> <option value="Northern Flicker">Northern Flicker</option> <option value="Northern Mockingbird">Northern Mockingbird</option> <option value="Northern Parula">Northern Parula</option> <option value="Northern Waterthrush">Northern Waterthrush</option> <option value="Olive-sided Flycatcher">Olive-sided Flycatcher</option> <option value="Orchard Oriole">Orchard Oriole</option> <option value="Osprey">Osprey</option> <option value="Ovenbird">Ovenbird</option> <option value="Palm Warbler">Palm Warbler</option> <option value="Peregrine Falcon">Peregrine Falcon</option> <option value="Pine Warbler">Pine Warbler</option> <option value="Prairie Warbler">Prairie Warbler</option> <option value="Prothonotary Warbler">Prothonotary Warbler</option> <option value="Purple Finch">Purple Finch</option> <option value="Red-headed Woodpecker">Red-headed Woodpecker</option> <option value="Red-bellied Woodpecker">Red-bellied Woodpecker</option> <option value="Red-bellied Nuthatch">Red-bellied Nuthatch</option> <option value="Red-eyed Vireo">Red-eyed Vireo</option> <option value="Red-tailed Hawk">Red-tailed Hawk</option> <option value="Rock Pigeon">Rock Pigeon</option> <option value="Rose-breasted Grosbeak">Rose-breasted Grosbeak</option> <option value="Ruby-crowned Kinglet">Ruby-crowned Kinglet</option> <option value="Ruby-throated Hummingbird">Ruby-throated Hummingbird</option> <option value="Savannah Sparrow">Savannah Sparrow</option> <option value="Scarlet Tanager">Scarlet Tanager</option> <option value="Seaside Sparrow">Seaside Sparrow</option> <option value="Song Sparrow">Song Sparrow</option> <option value="Sora">Sora</option> <option value="Swainson&#39;s Thrush">Swainson&#39;s Thrush</option> <option value="Swamp Sparrow">Swamp Sparrow</option> <option value="Tennessee Warbler">Tennessee Warbler</option> <option value="Tufted Titmouse">Tufted Titmouse</option> <option value="Veery">Veery</option> <option value="Virginia Rail">Virginia Rail</option> <option value="White-breasted Nuthatch">White-breasted Nuthatch</option> <option value="White-crowned Sparrow">White-crowned Sparrow</option> <option value="White-eyed Vireo">White-eyed Vireo</option> <option value="White-throated Sparrow">White-throated Sparrow</option> <option value="Willow Flycatcher">Willow Flycatcher</option> <option value="Wilson&#39;s Warbler">Wilson&#39;s Warbler</option> <option value="Winter Wren">Winter Wren</option> <option value="Wood Thrush">Wood Thrush</option> <option value="Worm-eating Warbler">Worm-eating Warbler</option> <option value="Yellow Warbler">Yellow Warbler</option> <option value="Yellow-bellied Flycatcher">Yellow-bellied Flycatcher</option> <option value="Yellow-bellied Sapsucker">Yellow-bellied Sapsucker</option> <option value="Yellow-billed Cuckoo">Yellow-billed Cuckoo</option> <option value="Yellow-breasted Chat">Yellow-breasted Chat</option> <option value="Yellow-rumped Warbler">Yellow-rumped Warbler</option> <option value="Yellow-throated Vireo">Yellow-throated Vireo</option>
                                 </select>
                             </div>
                         </div>
-                    </div><p></p>
-                          
+                    </div>
+</div>
+                  
                     <div class="ss-form-question errorbox-good" role="listitem">
-                        <div dir="ltr" class="ss-item ss-item-required ss-select">
+                        <div dir="ltr" class="ss-item ss-item-required ss-radio">
                             <div class="ss-form-entry">
-                                <label class="ss-q-item-label" for="entry_1760098207">
+                                <label class="ss-q-item-label" for="entry_221032589">
                                     <div class="ss-q-title">Dead or injured
                                         <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
                                         <span class="ss-required-asterisk" aria-hidden="true">*</span>
                                     </div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
-                                <select name="entry.1760098207" id="entry_1760098207" aria-label="Deadinjured  " aria-required="true" required="">
-                                    <option value=""></option>
-                                    <option value="Dead">Dead</option>
-                                    <option value="Injured">Injured</option>
-                                </select>
+                                </label></br>
+                                <ul class="ss-choices" role="radiogroup" aria-label="Deadinjured  ">
+                                        <label>
+                                            <span class="ss-choice-item-control goog-inline-block">
+                                                <input type="radio" name="entry.1760098207" value="Dead" id="group_1760098207_1" role="radio" class="ss-q-radio" aria-label="Dead" required="" aria-required="true">
+                                            </span>
+                                            <span class="ss-choice-label">Dead</span>
+                                        </label>
+                                        <label>
+                                            <span class="ss-choice-item-control goog-inline-block">
+                                                <input type="radio" name="entry.1760098207" value="Injured" id="group_1760098207_2" role="radio" class="ss-q-radio" aria-label="Injured" required="" aria-required="true">
+                                            </span>
+                                            <span class="ss-choice-label">Injured</span>
+                                        </label>
+                                </ul>
+                                <div class="error-message" id="221032589_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
-                    
+                    </div> 
+    
                     <div class="ss-form-question errorbox-good" role="listitem">
-                        <div dir="ltr" class="ss-item  ss-select">
+                        <div dir="ltr" class="ss-item  ss-radio">
                             <div class="ss-form-entry">
-                                <label class="ss-q-item-label" for="entry_1162522983">
+                                <label class="ss-q-item-label" for="entry_1834684349">
                                     <div class="ss-q-title">Sex</div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
-                                <select name="entry.1162522983" id="entry_1162522983" aria-label="Sex  ">
-                                    <option value=""></option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Unknown">Unknown</option>
-                                </select>
+                                </label></br>
+                                <ul class="ss-choices" role="radiogroup" aria-label="Sex  ">
+                                        <label>
+                                            <span class="ss-choice-item-control goog-inline-block">
+                                                <input type="radio" name="entry.1162522983" value="Male" id="group_1162522983_1" role="radio" class="ss-q-radio" aria-label="Male">
+                                            </span>
+                                            <span class="ss-choice-label">Male</span>
+                                        </label>
+                                        <label>
+                                            <span class="ss-choice-item-control goog-inline-block">
+                                                <input type="radio" name="entry.1162522983" value="Female" id="group_1162522983_2" role="radio" class="ss-q-radio" aria-label="Female">
+                                            </span>
+                                            <span class="ss-choice-label">Female</span>
+                                        </label>
+                                        <label>
+                                            <span class="ss-choice-item-control goog-inline-block">
+                                                <input type="radio" name="entry.1162522983" value="Unknown" id="group_1162522983_3" role="radio" class="ss-q-radio" aria-label="Unknown">
+                                            </span>
+                                            <span class="ss-choice-label">Unknown</span>
+                                        </label>
+                                </ul>
+                                <div class="error-message" id="1834684349_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
-                    
+                    </div> 
+    
                     <div class="ss-form-question errorbox-good" role="listitem">
-                        <div dir="ltr" class="ss-item  ss-select">
+                        <div dir="ltr" class="ss-item  ss-radio">
                             <div class="ss-form-entry">
-                                <label class="ss-q-item-label" for="entry_968826813">
+                                <label class="ss-q-item-label" for="entry_1772754323">
                                     <div class="ss-q-title">Age</div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
-                                <select name="entry.968826813" id="entry_968826813" aria-label="Age  ">
-                                    <option value=""></option>
-                                    <option value="Adult">Adult</option>
-                                    <option value="Juvenile">Juvenile</option>
-                                    <option value="Unknown">Unknown</option>
-                                </select>
+                                </label></br>
+                                <ul class="ss-choices" role="radiogroup" aria-label="Age  ">
+                                        <label>
+                                            <span class="ss-choice-item-control goog-inline-block">
+                                                <input type="radio" name="entry.968826813" value="Adult" id="group_968826813_1" role="radio" class="ss-q-radio" aria-label="Adult">
+                                            </span>
+                                            <span class="ss-choice-label">Adult</span>
+                                        </label>
+                                        <label>
+                                            <span class="ss-choice-item-control goog-inline-block">
+                                                <input type="radio" name="entry.968826813" value="Juvenile" id="group_968826813_2" role="radio" class="ss-q-radio" aria-label="Juvenile">
+                                            </span>
+                                            <span class="ss-choice-label">Juvenile</span>
+                                        </label>
+                                        <label>
+                                            <span class="ss-choice-item-control goog-inline-block">
+                                                <input type="radio" name="entry.968826813" value="Unknown" id="group_968826813_3" role="radio" class="ss-q-radio" aria-label="Unknown">
+                                            </span>
+                                            <span class="ss-choice-label">Unknown</span>
+                                        </label>
+                                </ul>
+                                <div class="error-message" id="1772754323_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
+                    </div> 
                     
                     <div class="ss-form-question errorbox-good" role="listitem">
                         <div dir="ltr" class="ss-item  ss-text">
@@ -429,12 +575,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <label class="ss-q-item-label" for="entry_583437283">
                                     <div class="ss-q-title">Your name</div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
+                                </label></br>
+                            
+                            <div class="textInput">
                                 <input type="text" name="entry.583437283" value="" class="ss-q-short" id="entry_583437283" dir="auto" aria-label="Your name  " title="">
                                 <div class="error-message" id="648750362_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
+                    </div>
+                </div>
                     
                     <div class="ss-form-question errorbox-good" role="listitem">
                         <div dir="ltr" class="ss-item  ss-text">
@@ -442,12 +591,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <label class="ss-q-item-label" for="entry_1267380138">
                                     <div class="ss-q-title">Contact info</div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
+                                </label></br>
+                            <div class="textInput">
                                 <input type="text" name="entry.1267380138" value="" class="ss-q-short" id="entry_1267380138" dir="auto" aria-label="Contact info  " title="">
                                 <div class="error-message" id="633149000_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
+                    </div>
+                </div>
                     
                     <div class="ss-form-question errorbox-good" role="listitem">
                         <div dir="ltr" class="ss-item  ss-text">
@@ -455,12 +606,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <label class="ss-q-item-label" for="entry_389816901">
                                     <div class="ss-q-title">Notes</div>
                                     <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
-                                </label>
+                                </label></br>
+                            <div class="textInput">
                                 <input type="text" name="entry.389816901" value="" class="ss-q-short" id="entry_389816901" dir="auto" aria-label="Notes  " title="">
                                 <div class="error-message" id="534155811_errorMessage"></div>
                             </div>
                         </div>
-                    </div><p></p>
+                    </div>
+                    </div>
                               
                   
                   <input type="hidden" name="draftResponse" value="[,,&quot;-6196294546305223501&quot;]
@@ -475,7 +628,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           <tbody>
                               <tr>
                                   <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
-                                      <input type="submit" name="submit" value="Submit" id="ss-submit" style="padding-left: 16px; padding-right: 16px; padding-top: 7px; padding-bottom: 7px;">
+                                      <input class="button hvr-fade" type="submit" name="submit" value="Submit" id="ss-submit" style="padding-left: 17px; padding-right: 17px; padding-top: 8px; padding-bottom: 8px;">
                                   </td>
                               </tr>
                           </tbody>
@@ -528,7 +681,7 @@ To learn more about D-Bird and to see a map of D-Bird results, <a href="http://w
 
 		<a href="http://www.nycaudubon.org/sitemap" style="color: #86a498" target="blank">Site Map</a><span style="padding: 0px 8px;">•</span><a href="http://www.nycaudubon.org/privacy-policy" style="color: #86a498" target="blank">Privacy Policy</a><span style="padding: 0px 8px;">•</span><a href="http://www.nycaudubon.org/contact-us" style="color: #86a498" target="blank">Contact Us</a><p></p>
         
-        <a href="http://nycaudubon.neocities.org/D-Bird%20Terms.html" target="blank">Disclaimer</a>
+        <a href="http://d-bird.org/terms.html" target="blank">Disclaimer</a>
     
 </div>
         
