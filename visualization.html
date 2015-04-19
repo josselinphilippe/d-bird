@@ -4,7 +4,9 @@
     
     <head>
         
+        <link rel="shortcut icon" href="http://d-bird.org/nyca%20fav%20icon.ico">
         
+        <title>D-Bird Date Visualization</title>
         
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
         
@@ -44,6 +46,7 @@
                 right: 25px;
                 top: 88px;
                 z-index: 5000;
+                vertical-align: middle;
                 border-style: solid;
                 border-color: #999;
                 border-width: 1px;
@@ -73,10 +76,12 @@
                 padding-left: 10px;
                 padding-right: 10px;
                 padding-bottom: 0px;
-                position: absolute; left: 20px;
+                position: absolute;
+                left: 20px;
                 right: 25px;
                 top: 88px;
                 z-index: 5000;
+                vertical-align: middle;
                 border-style: solid;
                 border-color: #999;
                 border-width: 1px;
@@ -100,10 +105,12 @@
                 padding-left: 10px;
                 padding-right: 10px;
                 padding-bottom: 0px;
-                position: absolute; left: 20px;
+                position: absolute;
+                left: 20px;
                 right: 25px;
                 top: 88px;
                 z-index: 5000;
+                vertical-align: middle;
                 border-style: solid;
                 border-color: #999;
                 border-width: 1px;
@@ -181,8 +188,6 @@
                 $("#count").prepend(count);
                 console.log("Text: " + items.count);
                 });
-    
-            window.onload = initialize;
             });
      
            //ADDS 2015 LAYER AND FILLS "COUNT" WITH COUNT FROM 2015 WHEN BUTTON TWO IS CLICKED       
@@ -196,8 +201,6 @@
                 $("#count").prepend(count);
                 console.log("Text: " + items.count);
                 }); 
-            
-            window.onload = initialize;
             });
             
            //EMPTIES "COUNT" WHEN ANY BUTTON IS CLICKED
