@@ -7,13 +7,26 @@
         
         <title>Project Safe Flight: Thank You</title>
         
+        
+        <script type="text/javascript">
+            window.onload = function() {
+ 	          setTimeout(loadfunction,500)
+            }
+            
+            function loadfunction() {
+ 	          document.getElementById("iframe").src = "http://d-bird.org/d-bird%20visualization.html"
+            }
+        </script>
+        
+        
         <style>
         
             body{
                 background-color: white;
                 font-family: Arial, Helvetica, sans-serif;
+                margin-top: 9px;
+                margin-left: 0px;
                 color: #575757;
-                margin-top: 30px;
                 overflow-x: hidden;
                 }
                 
@@ -23,6 +36,12 @@
                 
             .text{
                 text-align: center;
+                }
+            
+            #iframe{
+                width: 735px;
+                height: 430px;
+                border: none;
                 }
                 
             .footer{
@@ -40,33 +59,19 @@
     
     <body>
         
-        <!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MS664P"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MS664P');</script>
-<!-- End Google Tag Manager -->
-        
         <a href="http://www.nycaudubon.org/index.php" style="margin-left: 75px">
-            <img src="http://www.nycaudubon.org/images/logo.jpg"  
-                 style="
-                    width: 504px;
-                    height: 129px;"/>
-        </a>
-		</p>
+            <img src="http://d-bird.org/nyca%20banner.jpg"  
+                 style="width: 504px; height: 129px;"/>
+        </a></p>
         
         <div class=text>
         
-            <p style="font-size: 25px">Thank you for your submission!</p>
+            <p style="font-size: 25px">Thank you! Your submission has been recorded.</p>
         
-            <a href="http://d-bird.org/" style="font-size: 19px">Submit another observation</a>
-            </p>
+            <a href="http://d-bird.org/" style="font-size: 19px">Submit another report</a></p>
     
     
-            <iframe src="http://d-bird.org/d-bird%20visualization.html" width="750" height="500"></iframe></p>
+            <iframe id="iframe"></iframe></p>
     
         
             <a href="http://www.nycaudubon.org/project-safe-flight" style="font-size: 12px;">Project Safe Flight home</a>
