@@ -51,10 +51,10 @@
 	<!-- NEW TIMEPICKER -->
 	<script type="text/javascript" src="jquery.timepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="jquery.timepicker.css" />
-	<script type="text/javascript" src="lib/bootstrap-datepicker.js"></script>
-	<link rel="stylesheet" type="text/css" href="lib/bootstrap-datepicker.css" />
-	<script type="text/javascript" src="lib/site.js"></script>
-	<link rel="stylesheet" type="text/css" href="lib/site.css" />
+	<!--<script type="text/javascript" src="lib/bootstrap-datepicker.js"></script>-->
+	<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap-datepicker.css" />-->
+	<!--<script type="text/javascript" src="lib/site.js"></script>-->
+	<!--<link rel="stylesheet" type="text/css" href="lib/site.css" />-->
 
 	<script>
 		$(function() {
@@ -69,7 +69,7 @@
     
     
     <!-- HOVER EFFECT STYLESHEET -->
-    <link href="css/hover.css" rel="stylesheet" media="all">
+    <!--<link href="css/hover.css" rel="stylesheet" media="all">-->
                 
     
     <script>
@@ -83,9 +83,12 @@
             $(document).ready(function () {
                 
                 map = L.map('map', {touchZoom: false}).setView([40.709792, -73.991547], 10);
- 
+
                 geosearchControl = new L.Control.GeoSearch({
-                    provider: new L.GeoSearch.Provider.Google()
+                    provider: new L.GeoSearch.Provider.Google({
+                        componentRestrictions: {"locality":"New York City"}
+                    }),
+                    position: 'topcenter'
                 }).addTo(map);
                 
                 map.on('geosearch_showlocation', function(e) {
@@ -104,13 +107,13 @@
                     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>'
                 }).addTo(map);
              
-                $.getJSON('queens.geojson', function (data) {
-                    L.geoJson(data, {
-                        onEachFeature: function (feature, layer) {
-                            layer.bindPopup('area: ' + feature.properties.area);
-                        }
-                    }).addTo(map);
-                });
+                //$.getJSON('queens.geojson', function (data) {
+                  //  L.geoJson(data, {
+                    //    onEachFeature: function (feature, layer) {
+                      //      layer.bindPopup('area: ' + feature.properties.area);
+                      //  }
+                //    }).addTo(map);
+            //    });
          
                 
                 
@@ -260,20 +263,9 @@
     
        
 <body>
-    
-    <!-- GOOGLE TAG MANAGER -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MS664P"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MS664P');</script>
-<!-- END GOOGLE TAG MANAGER -->
-        
          
 		<a href="http://www.nycaudubon.org/index.php" target="blank">
-            <img src="http://www.nycaudubon.org/images/logo.jpg"  style="width: 504px; height: 129px;"/>
+            <img src="http://d-bird.org/nyca%20banner.jpg"  style="width: 504px; height: 129px;"/>
         </a>
 		</p>
     
@@ -288,7 +280,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <ol>
                 <div id="step">
-                <li>Tell us where you found the bird: Zoom in and click on the map or search for the <strong><em>complete</em></strong> address (street, city, state) where the bird was located.  A marker will appear where you clicked or on the address that you searched for.</li>
+                <li>Tell us where you found the bird: Zoom in and click on the map or search for the address where the bird was located.  A marker will appear where you clicked or on the address that you searched for.</li>
                 </div>
                 <div id="step">
                 <li>After you have clicked or found the address, fill out the information fields to the best of your ability.  Fields marked with * are required.</li>
@@ -364,8 +356,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     
                 </script>
                 
-                
                 -->
+                
    
  
             
@@ -469,7 +461,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="textInput">
                                 <select name="entry.212797529" id="entry_212797529" aria-label="Species  " aria-required="true" required="">
                                     <option value=""></option>
-<option value="unknown">unknown</option> <option value="other (describe in &#39;Notes&#39;)">other (describe in &#39;Notes&#39;)</option> <option value="bat sp.">bat sp.</option> <option value="flycatcher sp.">flycatcher sp.</option> <option value="gull sp.">gull sp.</option> <option value="kinglet sp.">kinglet sp.</option> <option value="owl sp.">owl sp.</option> <option value="sparrow sp.">sparrow sp.</option> <option value="thrush sp.">thrush sp.</option> <option value="warbler sp.">warbler sp.</option> <option value="woodpecker sp.">woodpecker sp.</option> <option value="wren sp.">wren sp.</option> <option value="Alder Flycatcher">Alder Flycatcher</option> <option value="American Black Duck">American Black Duck</option> <option value="American Coot">American Coot</option> <option value="American Goldfinch">American Goldfinch</option> <option value="American Kestrel">American Kestrel</option> <option value="American Redstart">American Redstart</option> <option value="American Robin">American Robin</option> <option value="American Woodcock">American Woodcock</option> <option value="Baltimore Oriole">Baltimore Oriole</option> <option value="Barn Swallow">Barn Swallow</option> <option value="Bay-Breasted Warbler">Bay-Breasted Warbler</option> <option value="Belted Kingfisher">Belted Kingfisher</option> <option value="Black-and-white Warbler">Black-and-white Warbler</option> <option value="Black-billed Cuckoo">Black-billed Cuckoo</option> <option value="Black-capped Chickadee">Black-capped Chickadee</option> <option value="Blackpoll Warbler">Blackpoll Warbler</option> <option value="Black-throated Blue Warbler">Black-throated Blue Warbler</option> <option value="Black-throated Green Warbler">Black-throated Green Warbler</option> <option value="Blue Jay">Blue Jay</option> <option value="Blue-headed Vireo">Blue-headed Vireo</option> <option value="Blue-winged Warbler">Blue-winged Warbler</option> <option value="Brown Creeper">Brown Creeper</option> <option value="Brown Thrasher">Brown Thrasher</option> <option value="Brown-headed Cowbird">Brown-headed Cowbird</option> <option value="Canada Warbler">Canada Warbler</option> <option value="Cape May Warbler">Cape May Warbler</option> <option value="Cedar Waxwing">Cedar Waxwing</option> <option value="Chestnut-sided Warbler">Chestnut-sided Warbler</option> <option value="Chipping Sparrow">Chipping Sparrow</option> <option value="Chuck-will&#39;s-widow">Chuck-will&#39;s-widow</option> <option value="Clapper Rail">Clapper Rail</option> <option value="Common Grackle">Common Grackle</option> <option value="Common Yellowthroat">Common Yellowthroat</option> <option value="Connecticut Warbler">Connecticut Warbler</option> <option value="Dark-eyed Junco">Dark-eyed Junco</option> <option value="Downy Woodpecker">Downy Woodpecker</option> <option value="Eastern Bluebird">Eastern Bluebird</option> <option value="Eastern Kingbird">Eastern Kingbird</option> <option value="Eastern Phoebe">Eastern Phoebe</option> <option value="Eastern Towhee">Eastern Towhee</option> <option value="Eastern Wood-pewee">Eastern Wood-pewee</option> <option value="European Starling">European Starling</option> <option value="Field Sparrow">Field Sparrow</option> <option value="Fox Sparrow">Fox Sparrow</option> <option value="Golden-crowned Kinglet">Golden-crowned Kinglet</option> <option value="Gray Catbird">Gray Catbird</option> <option value="Gray-cheeked Thrush">Gray-cheeked Thrush</option> <option value="Great Crested Flycatcher">Great Crested Flycatcher</option> <option value="Hermit Thrush">Hermit Thrush</option> <option value="Hooded Warbler">Hooded Warbler</option> <option value="House Finch">House Finch</option> <option value="House Sparrow">House Sparrow</option> <option value="House Wren">House Wren</option> <option value="Indigo Bunting">Indigo Bunting</option> <option value="Kentucky Warbler">Kentucky Warbler</option> <option value="Lazuli Bunting">Lazuli Bunting</option> <option value="Least Flycatcher">Least Flycatcher</option> <option value="Lincoln&#39;s Sparrow">Lincoln&#39;s Sparrow</option> <option value="Louisiana Waterthrush">Louisiana Waterthrush</option> <option value="Magnolia Warbler">Magnolia Warbler</option> <option value="Marsh Wren">Marsh Wren</option> <option value="Mourning Dove">Mourning Dove</option> <option value="Mourning Warbler">Mourning Warbler</option> <option value="Northern Cardinal">Northern Cardinal</option> <option value="Northern Flicker">Northern Flicker</option> <option value="Northern Mockingbird">Northern Mockingbird</option> <option value="Northern Parula">Northern Parula</option> <option value="Northern Waterthrush">Northern Waterthrush</option> <option value="Olive-sided Flycatcher">Olive-sided Flycatcher</option> <option value="Orchard Oriole">Orchard Oriole</option> <option value="Osprey">Osprey</option> <option value="Ovenbird">Ovenbird</option> <option value="Palm Warbler">Palm Warbler</option> <option value="Peregrine Falcon">Peregrine Falcon</option> <option value="Pine Warbler">Pine Warbler</option> <option value="Prairie Warbler">Prairie Warbler</option> <option value="Prothonotary Warbler">Prothonotary Warbler</option> <option value="Purple Finch">Purple Finch</option> <option value="Red-headed Woodpecker">Red-headed Woodpecker</option> <option value="Red-bellied Woodpecker">Red-bellied Woodpecker</option> <option value="Red-bellied Nuthatch">Red-bellied Nuthatch</option> <option value="Red-eyed Vireo">Red-eyed Vireo</option> <option value="Red-tailed Hawk">Red-tailed Hawk</option> <option value="Rock Pigeon">Rock Pigeon</option> <option value="Rose-breasted Grosbeak">Rose-breasted Grosbeak</option> <option value="Ruby-crowned Kinglet">Ruby-crowned Kinglet</option> <option value="Ruby-throated Hummingbird">Ruby-throated Hummingbird</option> <option value="Savannah Sparrow">Savannah Sparrow</option> <option value="Scarlet Tanager">Scarlet Tanager</option> <option value="Seaside Sparrow">Seaside Sparrow</option> <option value="Song Sparrow">Song Sparrow</option> <option value="Sora">Sora</option> <option value="Swainson&#39;s Thrush">Swainson&#39;s Thrush</option> <option value="Swamp Sparrow">Swamp Sparrow</option> <option value="Tennessee Warbler">Tennessee Warbler</option> <option value="Tufted Titmouse">Tufted Titmouse</option> <option value="Veery">Veery</option> <option value="Virginia Rail">Virginia Rail</option> <option value="White-breasted Nuthatch">White-breasted Nuthatch</option> <option value="White-crowned Sparrow">White-crowned Sparrow</option> <option value="White-eyed Vireo">White-eyed Vireo</option> <option value="White-throated Sparrow">White-throated Sparrow</option> <option value="Willow Flycatcher">Willow Flycatcher</option> <option value="Wilson&#39;s Warbler">Wilson&#39;s Warbler</option> <option value="Winter Wren">Winter Wren</option> <option value="Wood Thrush">Wood Thrush</option> <option value="Worm-eating Warbler">Worm-eating Warbler</option> <option value="Yellow Warbler">Yellow Warbler</option> <option value="Yellow-bellied Flycatcher">Yellow-bellied Flycatcher</option> <option value="Yellow-bellied Sapsucker">Yellow-bellied Sapsucker</option> <option value="Yellow-billed Cuckoo">Yellow-billed Cuckoo</option> <option value="Yellow-breasted Chat">Yellow-breasted Chat</option> <option value="Yellow-rumped Warbler">Yellow-rumped Warbler</option> <option value="Yellow-throated Vireo">Yellow-throated Vireo</option>
+<option value="unknown">unknown</option> <option value="other (describe in &#39;Notes&#39;)">other (describe in &#39;Notes&#39;)</option> <option value="flycatcher sp.">flycatcher sp.</option> <option value="gull sp.">gull sp.</option> <option value="kinglet sp.">kinglet sp.</option> <option value="owl sp.">owl sp.</option> <option value="sparrow sp.">sparrow sp.</option> <option value="thrush sp.">thrush sp.</option> <option value="warbler sp.">warbler sp.</option> <option value="woodpecker sp.">woodpecker sp.</option> <option value="wren sp.">wren sp.</option> <option value="Alder Flycatcher">Alder Flycatcher</option> <option value="American Black Duck">American Black Duck</option> <option value="American Coot">American Coot</option> <option value="American Goldfinch">American Goldfinch</option> <option value="American Kestrel">American Kestrel</option> <option value="American Redstart">American Redstart</option> <option value="American Robin">American Robin</option> <option value="American Woodcock">American Woodcock</option> <option value="Baltimore Oriole">Baltimore Oriole</option> <option value="Barn Swallow">Barn Swallow</option> <option value="Bay-Breasted Warbler">Bay-Breasted Warbler</option> <option value="Belted Kingfisher">Belted Kingfisher</option> <option value="Black-and-white Warbler">Black-and-white Warbler</option> <option value="Black-billed Cuckoo">Black-billed Cuckoo</option> <option value="Black-capped Chickadee">Black-capped Chickadee</option> <option value="Blackpoll Warbler">Blackpoll Warbler</option> <option value="Black-throated Blue Warbler">Black-throated Blue Warbler</option> <option value="Black-throated Green Warbler">Black-throated Green Warbler</option> <option value="Blue Jay">Blue Jay</option> <option value="Blue-headed Vireo">Blue-headed Vireo</option> <option value="Blue-winged Warbler">Blue-winged Warbler</option> <option value="Brown Creeper">Brown Creeper</option> <option value="Brown Thrasher">Brown Thrasher</option> <option value="Brown-headed Cowbird">Brown-headed Cowbird</option> <option value="Canada Warbler">Canada Warbler</option> <option value="Cape May Warbler">Cape May Warbler</option> <option value="Cedar Waxwing">Cedar Waxwing</option> <option value="Chestnut-sided Warbler">Chestnut-sided Warbler</option> <option value="Chipping Sparrow">Chipping Sparrow</option> <option value="Chuck-will&#39;s-widow">Chuck-will&#39;s-widow</option> <option value="Clapper Rail">Clapper Rail</option> <option value="Common Grackle">Common Grackle</option> <option value="Common Yellowthroat">Common Yellowthroat</option> <option value="Connecticut Warbler">Connecticut Warbler</option> <option value="Dark-eyed Junco">Dark-eyed Junco</option> <option value="Downy Woodpecker">Downy Woodpecker</option> <option value="Eastern Bluebird">Eastern Bluebird</option> <option value="Eastern Kingbird">Eastern Kingbird</option> <option value="Eastern Phoebe">Eastern Phoebe</option> <option value="Eastern Towhee">Eastern Towhee</option> <option value="Eastern Wood-pewee">Eastern Wood-pewee</option> <option value="European Starling">European Starling</option> <option value="Field Sparrow">Field Sparrow</option> <option value="Fox Sparrow">Fox Sparrow</option> <option value="Golden-crowned Kinglet">Golden-crowned Kinglet</option> <option value="Gray Catbird">Gray Catbird</option> <option value="Gray-cheeked Thrush">Gray-cheeked Thrush</option> <option value="Great Crested Flycatcher">Great Crested Flycatcher</option> <option value="Hermit Thrush">Hermit Thrush</option> <option value="Hooded Warbler">Hooded Warbler</option> <option value="House Finch">House Finch</option> <option value="House Sparrow">House Sparrow</option> <option value="House Wren">House Wren</option> <option value="Indigo Bunting">Indigo Bunting</option> <option value="Kentucky Warbler">Kentucky Warbler</option> <option value="Lazuli Bunting">Lazuli Bunting</option> <option value="Least Flycatcher">Least Flycatcher</option> <option value="Lincoln&#39;s Sparrow">Lincoln&#39;s Sparrow</option> <option value="Louisiana Waterthrush">Louisiana Waterthrush</option> <option value="Magnolia Warbler">Magnolia Warbler</option> <option value="Marsh Wren">Marsh Wren</option> <option value="Mourning Dove">Mourning Dove</option> <option value="Mourning Warbler">Mourning Warbler</option> <option value="Northern Cardinal">Northern Cardinal</option> <option value="Northern Flicker">Northern Flicker</option> <option value="Northern Mockingbird">Northern Mockingbird</option> <option value="Northern Parula">Northern Parula</option> <option value="Northern Waterthrush">Northern Waterthrush</option> <option value="Olive-sided Flycatcher">Olive-sided Flycatcher</option> <option value="Orchard Oriole">Orchard Oriole</option> <option value="Osprey">Osprey</option> <option value="Ovenbird">Ovenbird</option> <option value="Palm Warbler">Palm Warbler</option> <option value="Peregrine Falcon">Peregrine Falcon</option> <option value="Pine Warbler">Pine Warbler</option> <option value="Prairie Warbler">Prairie Warbler</option> <option value="Prothonotary Warbler">Prothonotary Warbler</option> <option value="Purple Finch">Purple Finch</option> <option value="Red-headed Woodpecker">Red-headed Woodpecker</option> <option value="Red-bellied Woodpecker">Red-bellied Woodpecker</option> <option value="Red-breasted Nuthatch">Red-breasted Nuthatch</option> <option value="Red-eyed Vireo">Red-eyed Vireo</option> <option value="Red-tailed Hawk">Red-tailed Hawk</option> <option value="Rock Pigeon">Rock Pigeon</option> <option value="Rose-breasted Grosbeak">Rose-breasted Grosbeak</option> <option value="Ruby-crowned Kinglet">Ruby-crowned Kinglet</option> <option value="Ruby-throated Hummingbird">Ruby-throated Hummingbird</option> <option value="Savannah Sparrow">Savannah Sparrow</option> <option value="Scarlet Tanager">Scarlet Tanager</option> <option value="Seaside Sparrow">Seaside Sparrow</option> <option value="Song Sparrow">Song Sparrow</option> <option value="Sora">Sora</option> <option value="Swainson&#39;s Thrush">Swainson&#39;s Thrush</option> <option value="Swamp Sparrow">Swamp Sparrow</option> <option value="Tennessee Warbler">Tennessee Warbler</option> <option value="Tufted Titmouse">Tufted Titmouse</option> <option value="Veery">Veery</option> <option value="Virginia Rail">Virginia Rail</option> <option value="White-breasted Nuthatch">White-breasted Nuthatch</option> <option value="White-crowned Sparrow">White-crowned Sparrow</option> <option value="White-eyed Vireo">White-eyed Vireo</option> <option value="White-throated Sparrow">White-throated Sparrow</option> <option value="Willow Flycatcher">Willow Flycatcher</option> <option value="Wilson&#39;s Warbler">Wilson&#39;s Warbler</option> <option value="Winter Wren">Winter Wren</option> <option value="Wood Thrush">Wood Thrush</option> <option value="Worm-eating Warbler">Worm-eating Warbler</option> <option value="Yellow Warbler">Yellow Warbler</option> <option value="Yellow-bellied Flycatcher">Yellow-bellied Flycatcher</option> <option value="Yellow-bellied Sapsucker">Yellow-bellied Sapsucker</option> <option value="Yellow-billed Cuckoo">Yellow-billed Cuckoo</option> <option value="Yellow-breasted Chat">Yellow-breasted Chat</option> <option value="Yellow-rumped Warbler">Yellow-rumped Warbler</option> <option value="Yellow-throated Vireo">Yellow-throated Vireo</option>
                                 </select>
                             </div>
                         </div>
@@ -489,7 +481,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <ul class="ss-choices" role="radiogroup" aria-label="Deadinjured  ">
                                         <label>
                                             <span class="ss-choice-item-control goog-inline-block">
-                                                <input type="radio" name="entry.1760098207" value="Dead" id="group_1760098207_1" role="radio" class="ss-q-radio" aria-label="Dead" required="" aria-required="true">
+                                                <input type="radio" name="entry.1760098207" value="Dead" id="group_1760098207_1" role="radio" class="ss-q-radio" aria-label="Dead" required="" aria-required="true" checked>
                                             </span>
                                             <span class="ss-choice-label">Dead</span>
                                         </label>
@@ -527,7 +519,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         </label>
                                         <label>
                                             <span class="ss-choice-item-control goog-inline-block">
-                                                <input type="radio" name="entry.1162522983" value="Unknown" id="group_1162522983_3" role="radio" class="ss-q-radio" aria-label="Unknown">
+                                                <input type="radio" name="entry.1162522983" value="Unknown" id="group_1162522983_3" role="radio" class="ss-q-radio" aria-label="Unknown" checked>
                                             </span>
                                             <span class="ss-choice-label">Unknown</span>
                                         </label>
@@ -559,7 +551,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         </label>
                                         <label>
                                             <span class="ss-choice-item-control goog-inline-block">
-                                                <input type="radio" name="entry.968826813" value="Unknown" id="group_968826813_3" role="radio" class="ss-q-radio" aria-label="Unknown">
+                                                <input type="radio" name="entry.968826813" value="Unknown" id="group_968826813_3" role="radio" class="ss-q-radio" aria-label="Unknown" checked>
                                             </span>
                                             <span class="ss-choice-label">Unknown</span>
                                         </label>
