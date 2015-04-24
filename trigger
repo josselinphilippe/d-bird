@@ -21,7 +21,7 @@ function onFormSubmission(e) {
 /**
  * Insert into CartoDB
  */
-function postToCartoDB(Datefound,Species,Lati,Longi,Deadinjured/**,latitude,longitude*/) {
+function postToCartoDB(Datefound,Species,Lati,Longi,Deadinjured) {
   Logger.log("posting to CartoDB");
   
   /**
